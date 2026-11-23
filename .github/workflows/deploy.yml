@@ -24,4 +24,7 @@ jobs:
           port: ${{ secrets.VPS_PORT || 22 }}
           command_timeout: 60m
           script: |
-            cd "$HOME/projects/pmtiles_ru" && ./bin/deploy.sh
+            set -euo pipefail
+            cd "$HOME/projects/pmtiles_ru"
+            git pull --ff-only
+            ./bin/deploy.sh
